@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style>
 html,body{
   margin: 0;
   padding: 0;
