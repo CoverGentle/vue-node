@@ -1,12 +1,20 @@
 <template>
   <div class="categoryEdit">
-    <p>{{ id ? "编辑" : "新建" }}分类</p>
+    <h1>{{ id ? "编辑" : "新建" }}分类</h1>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-form-item label="名称">
         <el-input v-model="model.name"></el-input>
       </el-form-item>
       <el-form-item label="图标">
-        <el-input v-model="model.icon"></el-input>
+        <el-upload
+          class="avatar-uploader"
+          :action="$http.defaults.baseURL + '/upload'"
+          :show-file-list="false"
+          :on-success="afterUpload"
+        >
+          <img v-if="model.icon" :src="model.icon" class="avatar" />
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -22,10 +30,16 @@ export default {
   },
   data() {
     return {
-      model: {},
+      model: {
+        icon:''
+      },
     };
   },
   methods: {
+    // 文件上传成功时的钩子
+    afterUpload(res) {
+      this.model.icon = res.url
+    },
     async save() {
       let res;
       if (this.id) {
@@ -44,7 +58,6 @@ export default {
       const res = await this.$http.get(`rest/items/${this.id}`);
       this.model = res.data;
     },
-    
   },
 
   created() {
@@ -54,4 +67,27 @@ export default {
 </script>
 
 <style>
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
 </style>
