@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+
+import Login from '../views/login.vue'
+
 import main from '../views/main.vue'
 import categoryEdit from '../views/CategoryEdit.vue'
 import categoryList from '../views/CategoryList.vue'
@@ -11,9 +14,15 @@ import itemList from '../views/itemList.vue'
 import heroEdit from '../views/heroEdit.vue'
 import heroList from '../views/heroList.vue'
 
+import AdminUserEdit from '../views/AdminUserEdit.vue'
+import AdminUserList from '../views/AdminUserList.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:'/login',name:'login',component:Login,
+  },
   {
     path: '/',
     name: 'main',
@@ -30,7 +39,11 @@ const routes = [
 
       { path: '/heros/create', component: heroEdit },
       { path: '/heros/list', component: heroList },
-      { path: '/heros/edit/:id', component: heroEdit, props: true }
+      { path: '/heros/edit/:id', component: heroEdit, props: true },
+
+      { path: '/admin_users/create', component: AdminUserEdit },
+      { path: '/admin_users/list', component: AdminUserList },
+      { path: '/admin_users/edit/:id', component: AdminUserEdit, props: true }
 
     ]
   },

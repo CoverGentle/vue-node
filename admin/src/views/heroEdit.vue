@@ -1,6 +1,6 @@
 <template>
   <div class="categoryEdit">
-    <h1>{{ id ? "编辑" : "新建" }}分类</h1>
+    <h1>{{ id ? "编辑" : "新建" }}英雄</h1>
     <el-form label-width="80px" @submit.native.prevent="save">
       <el-form-item label="名称">
         <el-input v-model="model.name"></el-input>
