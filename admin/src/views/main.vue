@@ -7,19 +7,29 @@
             ><i class="el-icon-message"></i>内容管理</template
           >
           <el-menu-item-group>
-            <template slot="title">分类</template>
+            <template slot="title">分类管理</template>
             <el-menu-item index="/categories/create">新建分类</el-menu-item>
             <el-menu-item index="/categories/list">分类列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
-            <template slot="title">物品</template>
+            <template slot="title">物品管理</template>
             <el-menu-item index="/items/create">新建物品</el-menu-item>
             <el-menu-item index="/items/list">物品分类</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
-            <template slot="title">英雄</template>
+            <template slot="title">英雄管理</template>
             <el-menu-item index="/heros/create">新建英雄</el-menu-item>
             <el-menu-item index="/heros/list">英雄分类</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">文章管理</template>
+            <el-menu-item index="/articles/create">新建文章</el-menu-item>
+            <el-menu-item index="/articles/list">文章列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">广告管理</template>
+            <el-menu-item index="/ads/create">新建广告</el-menu-item>
+            <el-menu-item index="/ads/list">广告列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 
@@ -28,13 +38,12 @@
             ><i class="el-icon-message"></i>系统管理</template
           >
           <el-menu-item-group>
-            <template slot="title">管理员</template>
+            <template slot="title">管理员管理</template>
             <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
             <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
-      
     </el-aside>
 
     <el-container>
@@ -42,14 +51,13 @@
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
+            <el-dropdown-item>
+              <el-button @click="deleteUser" type="text">删除</el-button>
+            </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>王小虎</span>
+        <span>{{username}}</span>
       </el-header>
-
       <el-main>
         <router-view></router-view>
       </el-main>
@@ -62,26 +70,29 @@
   color: #333;
   line-height: 60px;
 }
-
 .el-aside {
   color: #333;
 }
- 
-
-
 </style>
 
 <script>
 export default {
+  inject:['reload'],
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄",
-    };
     return {
-      tableData: Array(20).fill(item),
+     username:localStorage.username
     };
   },
+  methods:{
+    deleteUser(){
+         window.localStorage.clear()
+         this.reload()
+         this.$router.push('/')
+      
+    }
+  }
 };
 </script>
+<style scoped>
+
+</style>

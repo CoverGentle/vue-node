@@ -17,6 +17,12 @@ import heroList from '../views/heroList.vue'
 import AdminUserEdit from '../views/AdminUserEdit.vue'
 import AdminUserList from '../views/AdminUserList.vue'
 
+import articleEdit from '../views/articleEdit.vue'
+import articleList from '../views/articleList.vue'
+
+import adEdit from '../views/adEdit.vue'
+import adList from '../views/adList.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -41,9 +47,19 @@ const routes = [
       { path: '/heros/list', component: heroList },
       { path: '/heros/edit/:id', component: heroEdit, props: true },
 
+      { path: '/articles/create', component: articleEdit },
+      { path: '/articles/list', component: articleList },
+      { path: '/articles/edit/:id', component: articleEdit, props: true },
+
+      { path: '/ads/create', component: adEdit },
+      { path: '/ads/list', component: adList },
+      { path: '/ads/edit/:id', component: adEdit, props: true },
+
       { path: '/admin_users/create', component: AdminUserEdit },
       { path: '/admin_users/list', component: AdminUserList },
       { path: '/admin_users/edit/:id', component: AdminUserEdit, props: true }
+
+      
 
     ]
   },

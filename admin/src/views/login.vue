@@ -32,6 +32,7 @@ export default {
       const res = await this.$http.post("login", this.model);
       if (res) {
         localStorage.token = res.data.token;
+        localStorage.username = this.model.username;
         this.$router.push("/");
         this.$message({
           type: "success",
