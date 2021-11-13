@@ -1,10 +1,11 @@
 <template>
   <el-container style="height: 100vh">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-      <el-menu router  :default-active="$route.path" unique-opened >
+      <el-menu router :default-active="$route.path" unique-opened>
+        
         <el-submenu index="1">
           <template slot="title"
-            ><i class="el-icon-message"></i>内容管理</template
+            ><i class="el-icon-menu"></i>内容管理</template
           >
           <el-menu-item-group>
             <template slot="title">分类管理</template>
@@ -21,6 +22,21 @@
             <el-menu-item index="/heros/create">新建英雄</el-menu-item>
             <el-menu-item index="/heros/list">英雄分类</el-menu-item>
           </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="2">
+          <template slot="title"
+            ><i class="el-icon-setting"></i>系统管理</template
+          >
+          <el-menu-item-group>
+            <template slot="title">管理员管理</template>
+            <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
+            <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title"
+            ><i class="el-icon-document"></i>业务管理</template
+          >
           <el-menu-item-group>
             <template slot="title">文章管理</template>
             <el-menu-item index="/articles/create">新建文章</el-menu-item>
@@ -32,17 +48,6 @@
             <el-menu-item index="/ads/list">广告列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-
-        <el-submenu index="2">
-          <template slot="title"
-            ><i class="el-icon-message"></i>系统管理</template
-          >
-          <el-menu-item-group>
-            <template slot="title">管理员管理</template>
-            <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
-            <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
       </el-menu>
     </el-aside>
 
@@ -52,11 +57,11 @@
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>
-              <el-button @click="deleteUser" type="text">删除</el-button>
+              <el-button @click="deleteUser" type="text">注销</el-button>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
-        <span>{{username}}</span>
+        <span>{{ username }}</span>
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -77,22 +82,20 @@
 
 <script>
 export default {
-  inject:['reload'],
+  inject: ["reload"],
   data() {
     return {
-     username:localStorage.username
+      username: localStorage.username,
     };
   },
-  methods:{
-    deleteUser(){
-         window.localStorage.clear()
-         this.reload()
-         this.$router.push('/')
-      
-    }
-  }
+  methods: {
+    deleteUser() {
+      window.localStorage.clear();
+      this.reload()
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 <style scoped>
-
 </style>
