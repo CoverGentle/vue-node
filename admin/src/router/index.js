@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 import Login from '../views/login.vue'
+// import Login from '../views/login.vue'
 
 import main from '../views/main.vue'
 import categoryEdit from '../views/CategoryEdit.vue'
@@ -28,6 +29,9 @@ Vue.use(VueRouter)
 const routes = [
   {
     path:'/login',name:'login',component:Login,meta:{isPublic:true}
+  },
+  {
+    path:'*',redirect:'/404'
   },
   {
     path: '/',
